@@ -13,7 +13,6 @@ import NProgress from 'nprogress';
 import 'nprogress/nprogress.css';
 import Axios from  'axios'
 
-Vue.use(VueTuicalendar)
 Vue.use(ElementUI);
 Vue.config.productionTip = false
 

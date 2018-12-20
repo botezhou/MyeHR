@@ -1,6 +1,6 @@
 <template>
   <div class="questionForm">
-    <el-form ref="form" :model="form" label-position="top" v-loading="loading">
+    <el-form ref="form" :model="form" label-position="top">
       <div v-for="(question,index) in datas" :key="index">
         <!-- <div v-if="question.questionGroup==='1'"> -->
           <el-form-item v-if="question.questionType==='single'" :label="question.questionSort+'、'+question.questionName">
@@ -76,6 +76,7 @@
 
 <script>
   import { questionModelURL} from '@/api/http.js';
+  import { Loading } from 'element-ui';
   export default {
     data() {
       let datas = [
@@ -106,10 +107,19 @@
         console.log('submit!');
       },
       _getQuestionModel() {
+        let loadingInstance = Loading.service({
+          target: document.querySelector('questionForm'),
+          text: '数据加载中',
+          spinner: 'el-icon-loading',
+          background: 'rgba(0, 0, 0, 0.7)'
+        });
         this.$http.post(questionModelURL).then(res=>{
-          this.loading = false
+            loadingInstance.close()
             console.log(res)
             this.datas = res
+        })
+        .catch(err=>{
+            loadingInstance.close()
         })
       }
     }

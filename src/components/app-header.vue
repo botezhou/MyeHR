@@ -2,7 +2,7 @@
   <div class="head">
     <div class="headbox flex-container">
         <div class="logo-box">        
-          <img src="../assets/image/logo_fast.png" alt="" class="header-logo">
+          
         </div>
         <div>
           <div class="flex-container">
